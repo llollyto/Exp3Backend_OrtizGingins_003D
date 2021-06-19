@@ -1,0 +1,39 @@
+.cuadrado{
+    height: 300px;
+    width: 300px;
+}
+.margen {
+    margin: 20px;
+}
+
+.monitas {
+    /* align-items: center; */
+    margin: 10px;
+    width: auto;
+    height: 300px; 
+    object-fit: cover;
+}
+
+.cards{
+    width: auto!important; 
+    height: 500px!important;
+}
+
+@media (min-width: 768px) {
+    .cards {
+        width: auto!important;
+        height: 550px!important;
+    }
+}
+  @media (max-width: 576px) {
+    .cards {
+        width: auto!important; 
+        height: 500px!important;
+    }
+ }
+.carrusel{
+    background-color: rgb(170, 170, 170); 
+    color: black;
+     opacity: 0.7; 
+     border-radius: 50px;
+}

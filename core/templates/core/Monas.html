@@ -1,0 +1,29 @@
+{% extends "core/Includes/base.html" %}
+{% block body %}
+
+<div class="">
+  <h1 class="text-center" style="padding: 50px;"> Cultura otaku </h1>
+  <h2 class="text-center"> WAYFUS</h2>
+</div>
+
+{% load static%}
+
+
+<div class="container">
+  <div class="row">
+    {% for m in Mona %}
+    <div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="card m-4 cards" >
+      <img src="{{m.imagen.url}}" class="monitas img-fluid">
+      <div class="card-body">
+        <p class="card-text">{{m.descripcion}}</p>
+      </div>
+    </div>
+  </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+{% include "core/Includes/footer.html" %}
+{% endblock %}
