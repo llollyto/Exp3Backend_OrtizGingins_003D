@@ -11,7 +11,7 @@
 
     <div class="row">
         <div class="row">
-            <form method="POST" action="#" id="formulario">
+            <form method="POST" action="#" id="formulario" enctype="multipart/form-data">
                 {%csrf_token%}
                 <div class="form-group">
                     {{producto_form.nombre.label}}

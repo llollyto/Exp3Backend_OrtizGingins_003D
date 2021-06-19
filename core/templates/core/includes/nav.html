@@ -14,10 +14,13 @@
           </li>
           
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'ingresarProducto' %}">Registrar usuario</a>
+            <a class="nav-link" href="{% url 'ingresarUsuario' %}">Registrar usuario</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Iniciar sesión</a>
+            <a class="nav-link" href="{% url 'ingresarProducto' %}">Ingresar producto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Iniciar sesión</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="{% url 'productos' %}">Productos</a>
