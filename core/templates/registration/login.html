@@ -1,0 +1,20 @@
+{% extends "core/Includes/base.html" %}
+{% block body %}
+
+{% load static%}
+<div class="row">
+    <div class="row">
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{ form }}
+
+        <button type="sumbit" class="btn btn-primary"  value="Ingresar">
+           
+        </form>
+        
+    </div>
+</div>
+
+
+{% include "core/Includes/footer.html" %}
+{% endblock %}

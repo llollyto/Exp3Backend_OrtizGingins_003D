@@ -131,13 +131,19 @@ USE_TZ = True
 
 STATIC_URL = '/core/static/'
 
-MEDIA_URL = '/core/img2/'
+
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'core/static/core/img2/')
+    os.path.join(BASE_DIR, 'core/static')
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'core/static/core/img2')
+
+MEDIA_URL = '/core/img2/'
+
+LOGIN_REDIRECT_URL = ('/')
+
+LOGOUT_REDIRECT_URL = ('/')
 
 
 

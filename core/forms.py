@@ -10,7 +10,7 @@ class ProductoForm(forms.ModelForm):
 
     class Meta:
         model = Producto
-        fields = ['nombre', 'descripcion', 'precio', 'imagen']
+        fields = ['nombre', 'descripcion', 'precio']
         labels = {
             'nombre': 'Nombre',
             'descripcion': 'Descripcion',
@@ -36,11 +36,7 @@ class ProductoForm(forms.ModelForm):
                     'placeholder': 'Precio'
                 }
             ),
-            'imagen': forms.FileInput(
-                {
-                    'type': 'file'
-                }
-            ),
+            
         }
 
 class UsuarioForm(forms.ModelForm):

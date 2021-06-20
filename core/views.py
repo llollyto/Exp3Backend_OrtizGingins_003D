@@ -3,7 +3,8 @@ from .models import Producto
 from .models import Mona
 from .forms import ProductoForm, UsuarioForm
 from django.http import HttpResponse
-from pprint import pprint
+from django.contrib.auth import login, authenticate
+
 # Create your views here.
 
 def Monas(request):
@@ -11,8 +12,11 @@ def Monas(request):
     return render(request, 'core/Monas.html', context={'Mona': mona})
 
 def productos(request):
+    
     producto = Producto.objects.all()
-    pprint(globals())
+    print(producto)
+    for i, c in enumerate(producto):
+         print(c.imagen.url)
     return render(request, 'core/productos.html',  context={'Producto': producto})
 
 def info(request):
@@ -34,6 +38,15 @@ def ingresarProducto(request) :
     else:
         producto_form = ProductoForm()
     return render(request, 'core/forms.html'  , {'producto_form': producto_form})
+
+def subirImagen(request):
+    if request.method == 'POST' and request.FILES['imagenloa']:
+        imagenes = request.FILES['imagenloa']
+        print(imagenes.name)
+        print(imagenes.size)
+        if imagenes.is_valid():
+            imagenes.save()
+        return render(request, 'core/forms.html')
 
 def ingresarUsuario(request):
     if request.method=='POST':

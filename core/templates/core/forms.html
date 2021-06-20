@@ -1,6 +1,6 @@
 {% extends "core/Includes/base.html" %}
 {% block body %}
-{% load static%}
+{% load static %}
 
 
 
@@ -12,7 +12,7 @@
     <div class="row">
         <div class="row">
             <form method="POST" action="#" id="formulario" enctype="multipart/form-data">
-                {%csrf_token%}
+                {% csrf_token %}
                 <div class="form-group">
                     {{producto_form.nombre.label}}
                     {{producto_form.nombre}}
@@ -26,8 +26,8 @@
                     {{producto_form.precio}}
                 </div>
                 <div class="form-group">
-                    {{producto_form.imagen.label}}
-                     {{producto_form.imagen}}
+                    <input type="file" name="imageloa">
+                  
                  </div> 
                 <div class="form-group">
                      <input type="submit" class="btn btn-danger" id="enviar" value="Enviar">
