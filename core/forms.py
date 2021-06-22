@@ -1,9 +1,12 @@
 from django import forms
+from django.db.models import fields
 from django.forms import ModelForm
 from django.forms import widgets
 from django.forms.models import ModelMultipleChoiceField
 from django.forms.widgets import Widget
 from .models import Producto, Mona, Usuario
+from django.contrib.auth.forms import UserCreationForm
+from django.utils.translation import gettext_lazy as _
 
 
 class ProductoForm(forms.ModelForm):
@@ -39,57 +42,66 @@ class ProductoForm(forms.ModelForm):
             
         }
 
-class UsuarioForm(forms.ModelForm):
-    
-    class Meta:
-        model = Usuario
-        fields = ['nombreUsu', 'rutUsu', 'direccionUsu', 'correoUsu', 'fechaNa' , 'password']
-        labels = {
-            'nombreUsu' : 'Nombre', 
-            'rutUsu': 'Rut', 
-            'direccionUsu' : 'Direccion', 
-            'correoUsu' : 'Correo', 
-            'fechaNa' : 'Fecha de nacimiento', 
-            'password': 'Clave'
 
+class UsuarioForm(forms.ModelForm):
+
+    class Meta:
+        model= Usuario
+        fields = [
+            'nombre',
+            'sexo',
+            'edad',
+            'correo',
+            'direccion',
+            'password1'
+        ]
+
+        labels = {
+            'nombre': 'Nombre',
+            'sexo': 'Sexo',
+            'edad':'Edad',
+            'correo': 'Email',
+            'direccion': 'Direccion',
+            'password1':'Clave',
         }
-        widgets={
-            'nombreUsu': forms.TextInput(
+
+        widgets = {
+            'nombre': forms.TextInput(
                 attrs={
                     'class': 'form-control',
-                    'placeholder': 'Nombre'
+                    'placeholder': 'Introduzca nombre'
                 }
             ),
-            'rutUsu': forms.TextInput(
+            'sexo': forms.TextInput(
                 attrs={
                     'class': 'form-control',
-                    'placeholder': 'Rut'
+                    'placeholder': 'Introduzca sexo'
                 }
             ),
-            'direccionUsu': forms.TextInput(
+            'edad': forms.TextInput(
                 attrs={
                     'class': 'form-control',
-                    'placeholder': 'Direccion'
+                    'placeholder': 'Introduzca edad'
                 }
             ),
-            'correoUsu': forms.TextInput(
+            'correo': forms.TextInput(
                 attrs={
                     'class': 'form-control',
-                    'placeholder': 'Correo'
+                    'placeholder': 'Introduzca correo'
                 }
             ),
-            'fechaNa': forms.DateInput(
+            'direccion': forms.TextInput(
                 attrs={
                     'class': 'form-control',
-                    'placeholder': 'Fecha de nacimiento',
-                    'type': 'Date'
+                    'placeholder': 'Introduzca direccion'
                 }
-                
             ),
-            'password': forms.TextInput(
+            'password1': forms.TextInput(
                 attrs={
                     'class': 'form-control',
-                    'placeholder': 'Clave'
+                    'placeholder': 'Introduzca clave',
+                    'type': 'password'
                 }
-            )
+            ),
         }
+

@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect
 from .models import Producto
 from .models import Mona
+from .models import Usuario
 from .forms import ProductoForm, UsuarioForm
 from django.http import HttpResponse
 from django.contrib.auth import login, authenticate
+from django.views.generic import CreateView, ListView, UpdateView, DeleteView
+
+
 
 # Create your views here.
 
@@ -12,11 +16,7 @@ def Monas(request):
     return render(request, 'core/Monas.html', context={'Mona': mona})
 
 def productos(request):
-    
     producto = Producto.objects.all()
-    print(producto)
-    for i, c in enumerate(producto):
-         print(c.imagen.url)
     return render(request, 'core/productos.html',  context={'Producto': producto})
 
 def info(request):
@@ -48,13 +48,29 @@ def subirImagen(request):
             imagenes.save()
         return render(request, 'core/forms.html')
 
-def ingresarUsuario(request):
-    if request.method=='POST':
-        usuario_form = UsuarioForm(request.POST)
-        if usuario_form.is_valid():
-            usuario_form.save()
-            return redirect('home')
+def IngresoUsuario(request):
+    if request.method == 'POST':
+        form = UsuarioForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('home')
     else:
-        usuario_form = UsuarioForm()
-    return render(request, 'core/usuform.html'  , {'usuario_form': usuario_form})
+        form = UsuarioForm()
+    return render(request, 'core/usuform.html'  , {'form': form})
 
+def UsuarioList(request):
+    usuario = Usuario.objects.all()
+    contexto = {'usu': usuario}
+    return render(request, 'core/infoUsuario.html'  , contexto)
+
+
+def UsuarioEdit(request, id):
+    usu = Usuario.objects.get(id=id)
+    if request.method == 'GET':
+        form = UsuarioForm(instance=usu)
+    else:
+        form = UsuarioForm(request.POST, instance=usu)
+        if form.is_valid():
+            form.save()
+        return redirect('UsuarioList')
+    return render(request, 'core/usuform.html')

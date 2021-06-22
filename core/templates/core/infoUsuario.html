@@ -1,0 +1,40 @@
+{% extends "core/Includes/base.html" %}
+{% block body %}
+{% load static %}
+
+
+<table class="table table-bordered">
+<thead>
+    <tr>
+        <td>#</td>
+        <td>Nombre</td>
+        <td>Sexo</td>
+        <td>Edad</td> 
+        <td>Correo</td> 
+        <td>Direccion</td> 
+    </tr>
+</thead>
+<tbody>
+    {% if usu %}
+    {% for Usuario in usu %}
+    <tr>
+        <td>{{ Usuario.id }}</td>
+        <td>{{ Usuario.nombre }}</td>
+        <td>{{ Usuario.sexo }}</td>
+        <td>{{ Usuario.edad }}</td>
+        <td>{{ Usuario.correo }}</td>
+        <td>{{ Usuario.direccion }}</td>
+    </tr>
+    {% endfor %}
+    {% else %}
+    <h1>No hay usuarios</h1>
+    {% endif %}
+</tbody>
+</table>
+   
+
+
+
+
+{% include "core/Includes/footer.html" %}
+{% endblock %}
