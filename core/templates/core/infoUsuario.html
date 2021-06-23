@@ -2,8 +2,8 @@
 {% block body %}
 {% load static %}
 
-
-<table class="table table-bordered">
+<div class="container" style="padding-top: 50px; padding-bottom: 50px;">
+<table class="table table-dark table-striped">
 <thead>
     <tr>
         <td>#</td>
@@ -12,9 +12,11 @@
         <td>Edad</td> 
         <td>Correo</td> 
         <td>Direccion</td> 
+        <td>Acciones</td>
     </tr>
 </thead>
 <tbody>
+    
     {% if usu %}
     {% for Usuario in usu %}
     <tr>
@@ -24,13 +26,24 @@
         <td>{{ Usuario.edad }}</td>
         <td>{{ Usuario.correo }}</td>
         <td>{{ Usuario.direccion }}</td>
+        <td>
+            <a class="btn btn-primary" href="{% url 'Edit' Usuario.id %}">
+                Editar
+            </a>
+            <a class="btn btn-danger" href="{% url 'Delete' Usuario.id %}">
+                Eliminar
+            </a>
+        </td>
+        
     </tr>
+   
     {% endfor %}
     {% else %}
     <h1>No hay usuarios</h1>
     {% endif %}
 </tbody>
 </table>
+</div>
    
 
 

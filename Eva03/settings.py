@@ -11,8 +11,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
-
+from django.urls import reverse_lazy
 from pathlib import Path
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -141,7 +142,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'core/static/core/img2')
 
 MEDIA_URL = '/core/img2/'
 
-LOGIN_REDIRECT_URL = ('/')
+LOGIN_REDIRECT_URL = reverse_lazy('home')
 
 LOGOUT_REDIRECT_URL = ('/')
 

@@ -2,10 +2,10 @@ from django.shortcuts import render, redirect
 from .models import Producto
 from .models import Mona
 from .models import Usuario
-from .forms import ProductoForm, UsuarioForm
+from .forms import  UsuarioForm
 from django.http import HttpResponse
-from django.contrib.auth import login, authenticate
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView
+
 
 
 
@@ -29,25 +29,6 @@ def login(request):
     return render(request, 'core/login.html')
 
 
-def ingresarProducto(request) :
-    if request.method=='POST' :
-        producto_form = ProductoForm(request.POST) 
-        if producto_form.is_valid():
-            producto_form.save()
-            return redirect('home')
-    else:
-        producto_form = ProductoForm()
-    return render(request, 'core/forms.html'  , {'producto_form': producto_form})
-
-def subirImagen(request):
-    if request.method == 'POST' and request.FILES['imagenloa']:
-        imagenes = request.FILES['imagenloa']
-        print(imagenes.name)
-        print(imagenes.size)
-        if imagenes.is_valid():
-            imagenes.save()
-        return render(request, 'core/forms.html')
-
 def IngresoUsuario(request):
     if request.method == 'POST':
         form = UsuarioForm(request.POST)
@@ -59,13 +40,13 @@ def IngresoUsuario(request):
     return render(request, 'core/usuform.html'  , {'form': form})
 
 def UsuarioList(request):
-    usuario = Usuario.objects.all()
+    usuario = Usuario.objects.all().order_by('id')
     contexto = {'usu': usuario}
     return render(request, 'core/infoUsuario.html'  , contexto)
 
 
-def UsuarioEdit(request, id):
-    usu = Usuario.objects.get(id=id)
+def UsuarioEdit(request, id_usuario):
+    usu = Usuario.objects.get(id=id_usuario)
     if request.method == 'GET':
         form = UsuarioForm(instance=usu)
     else:
@@ -73,4 +54,13 @@ def UsuarioEdit(request, id):
         if form.is_valid():
             form.save()
         return redirect('UsuarioList')
-    return render(request, 'core/usuform.html')
+    return render(request, 'core/usuform.html', {'form':form})
+
+
+def UsuarioDelete(request, id_usuario):
+    usu = Usuario.objects.get(id=id_usuario)
+    if request.method == 'POST':
+        usu.delete()
+        return redirect('UsuarioList')
+    return render(request, 'core/usuarioDelete.html', {'usu':usu})
+

@@ -1,0 +1,18 @@
+{% extends "core/Includes/base.html" %}
+{% block body %}
+{% load static%}
+<div style="margin-top: 100px; margin-bottom: 500px;">
+<div class="col-lg-4 col-md-6 col-sm-12 text-center" style="margin: auto;">
+<form method="POST" action="">
+    {% csrf_token %}
+    <h3>Desea eliminar al usuario: {{ Usuario.nombre }}</h3>
+    <div style="margin:50px">
+    <button class="btn btn-danger" type="sumbit">Eliminar</button>
+    <a class="btn btn-default" href="{% url 'UsuarioList' %}"></a>
+    <a href="{% url 'home' %}">Volver al inicio</a>
+    </div>
+</form>
+</div>
+</div>
+{% include "core/Includes/footer.html" %}
+{% endblock %}

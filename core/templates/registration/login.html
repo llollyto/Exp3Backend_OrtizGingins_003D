@@ -2,17 +2,38 @@
 {% block body %}
 
 {% load static%}
-<div class="row">
-    <div class="row">
-        <form method="POST" action="">
-            {% csrf_token %}
-            {{ form }}
-
-        <button type="sumbit" class="btn btn-primary"  value="Ingresar">
-           
-        </form>
-        
+<div class="col-lg-4 col-md-6 col-sm-12 text-center" style="margin: auto;">
+<div class="card m-4 cards">
+<form method="POST">
+    {% csrf_token %}
+    <div class="row" style="padding: 25px;">
+        <div class="text-center">
+            <div class="form-group">
+                <div style="padding: 20px;">
+                <h3>Nombre usuario</h3>
+                </div>
+                <input type="text" class="form-control" name="user">
+            </div>
+        </div>
     </div>
+    <div class="row" style="padding: 25px;">
+        <div class="text-center">
+            <div class="form-group">
+                <div style="padding: 20px;">
+                    <h3>Clave usuario</h3>
+                    </div>
+                <input type="password" class="form-control" name="password">
+                <div style="padding: 50px;">
+                <input class="btn btn-primary" type="submit" value="Ingresar">
+                <a href="{% url 'home' %}">Volver al inicio</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+</div>
 </div>
 
 
